@@ -1,0 +1,337 @@
+<html>
+    <head>
+        <meta charSet="UTF-8">
+        <style>
+            .theme-raspberry {
+                --color-plate-A: #cd3d6f;
+                --color-plate-B: #dd5e89;
+                --color-plate-C: #e07fa0;
+                --color-plate-D: #ed9cb8;
+                --color-plate-E: #f3bace;
+            }
+
+            .theme-walnut {
+                --color-plate-A: #c89f76;
+                --color-plate-B: #deb993;
+                --color-plate-C: #f4d6b7;
+                --color-plate-D: #ffead3;
+                --color-plate-E: #fff1e2;
+            }
+
+            .theme-ocean {
+                --color-plate-A: #305772;
+                --color-plate-B: #155eaa;
+                --color-plate-C: #1e9dae;
+                --color-plate-D: #3ebac7;
+                --color-plate-E: #bbe0e9;
+            }
+
+            .theme-sci {
+                --color-plate-A: #002439;
+                --color-plate-B: #005066;
+                --color-plate-C: #4e7988;
+                --color-plate-D: #78cce2;
+                --color-plate-E: #e4eff0;
+            }
+
+            .theme-black-gold {
+                --color-plate-A: #4C3D3D;
+                --color-plate-B: #C07F00;
+                --color-plate-C: #FFD95A;
+                --color-plate-D: #FFF7D4;
+                --color-plate-E: #fdfdf7;
+            }
+
+            body {
+                padding: 1rem;
+                overflow: auto;
+                background: var(--color-plate-A);
+                font-family: 'Inter', sans-serif;
+                color: var(--color-plate-D);
+            }
+
+            button, a {
+                cursor: pointer
+            }
+
+            input, select {
+                display: block;
+                background: var(--color-plate-B);
+                color: var(--color-plate-D);
+                outline: none;
+                border: none;
+                border-bottom: 2px solid var(--color-plate-C);
+                padding: 8px 12px;
+            }
+
+            .disable, :disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+                pointer-events: none;
+            }
+
+            .display-none {
+                display: none;
+            }
+
+            input:focus {
+                background: var(--color-plate-C);
+                border-color: var(--color-plate-D);
+            }
+
+            input[type="checkbox"], input[type="radio"] {
+                width: 14px;
+                height: 14px;
+            }
+
+            #logs, .logs {
+                padding: 8px 4px;
+                height: 275px;
+                overflow: scroll;
+                border: 1px dashed gray;
+                border-radius: 8px
+            }
+
+            main {
+                display: flex;
+                gap: 32px;
+            }
+
+            #controls {
+                flex: 1 1 400px;
+            }
+
+            #outputs {
+                flex: 1 1 400px;
+            }
+
+            label {
+                user-select: none;
+            }
+
+            button {
+                background: var(--color-plate-B);
+                border-radius: 15px;
+                padding: 8px 12px;
+                outline: none;
+                border: 1px solid var(--color-plate-D);
+                color: inherit;
+                min-width: 125px;
+            }
+
+            button:active {
+                transform: scale(0.95);
+            }
+
+            .button--secondary {
+                background: var(--color-plate-A);
+                border-color: var(--color-plate-B);
+                color: inherit;
+            }
+
+            .text-color-a {
+                color: var(--color-plate-A)
+            }
+
+            .text-color-b {
+                color: var(--color-plate-B)
+            }
+
+            .text-color-c {
+                color: var(--color-plate-C)
+            }
+
+            .text-color-d {
+                color: var(--color-plate-D)
+            }
+
+            .text-color-e {
+                color: var(--color-plate-E)
+            }
+
+            .bg-color-a {
+                color: var(--color-plate-A)
+            }
+
+            .bg-color-b {
+                color: var(--color-plate-B)
+            }
+
+            .bg-color-c {
+                color: var(--color-plate-C)
+            }
+
+            .bg-color-d {
+                color: var(--color-plate-D)
+            }
+
+            .bg-color-e {
+                color: var(--color-plate-E)
+            }
+
+            .flex {
+                display: flex
+            }
+
+            .flex-gap {
+                gap: 8px
+            }
+
+            .flex-gap-2 {
+                gap: 12px
+            }
+
+            .flex-gap-3 {
+                gap: 24px
+            }
+
+            .flex-v-center {
+                align-items: center
+            }
+
+            .margin-top {
+                margin-top: 8px
+            }
+
+            .margin-top-2 {
+                margin-top: 12px
+            }
+
+            .margin-top-3 {
+                margin-top: 24px
+            }
+        </style>
+    </head>
+    <body class="theme-ocean">
+        <main>
+            <section id="controls">
+                <h2>Collection names:</h2>
+                <table>
+                    <tr>
+                        <td>
+                            <div class="flex flex-gap flex-v-center">
+                                <input id="primitivecheck" type="checkbox" checked/>
+                                <label for="primitivecheck">Primitives:</label>
+                            </div>
+                        </td>
+                        <td>
+                            <input id="primitivename" type="text" value="Primitive Vars" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="flex flex-gap flex-v-center">
+                                <input id="semanticcheck" type="checkbox" checked/>
+                                <label for="semanticcheck">Semantics:</label>
+                            </div>
+                        </td>
+                        <td>
+                            <input id="semanticname" type="text" value="Semantic Vars" />
+                        </td>
+                    </tr>
+                </table>
+                <small>
+                    Hint: Suggestion is from your Local variables Collections.
+                    You can rename to match your corresponding Primitive & Semantic Collection
+                </small>
+
+                <h2>Formats:</h2>
+                <div class="flex flex-gap flex-v-center">
+                    <input id="scsscheck" type="checkbox" checked/>
+                    <label for="scsscheck">SCSS Maps</label>
+                </div>
+                <div class="flex flex-gap flex-v-center">
+                    <input id="csscheck" type="checkbox" checked/>
+                    <label for="csscheck">CSS Vars</label>
+                </div>
+                <div class="flex flex-gap flex-v-center">
+                    <input id="tscheck" type="checkbox" checked/>
+                    <label for="tscheck">TS Types</label>
+                </div>
+                <div class="flex flex-gap flex-v-center">
+                    <input id="jsoncheck" type="checkbox" checked/>
+                    <label for="jsoncheck">JSON Maps</label>
+                </div>
+
+                <h2>Rename:</h2>
+                <table>
+                    <tr>
+                        <td>
+                            <div class="flex flex-gap flex-v-center">
+                                <input id="prefixcheck" type="checkbox" checked/>
+                                <label for="prefixcheck">Prefix:</label>
+                            </div>
+                        </td>
+                        <td>
+                            <input id="prefixname" type="text" value="your-ds" />
+                        </td>
+                    </tr>
+                </table>
+
+                <h2>Actions:</h2>
+                <div>
+                    <button id="generate">Generate!</button>
+                </div>
+
+            </section>
+
+            <section id="outputs" class="display-none">
+                <h2>Outputs</h2>
+                <div>
+                    <small>Hint: Use <span class="text-color-e">Ctrl + C</span> or <span class="text-color-e">Cmd + C</span> to Copy.</small>
+                </div>
+                <div id="panelscss" class="margin-top">
+                    <h4>SCSS</h4>
+                    <div id="outputscss" class="logs"></div>
+                </div>
+                <div id="panelcss" class="margin-top">
+                    <h4>CSS</h4>
+                    <div id="outputcss" class="logs"></div>
+                </div>
+                <div id="panelts" class="margin-top">
+                    <h4>TS</h4>
+                    <div id="outputts" class="logs"></div>
+                </div>
+                <div id="paneljson"class="margin-top">
+                    <h4>JSON</h4>
+                    <div id="outputjson" class="logs"></div>
+                </div>
+            </section>
+        </main>
+
+        <script>
+            function explore() {
+	            // const data = {
+		        //     primitiveName: document.getElementById('primitivename'),
+		        //     semanticName: document.getElementById('semanticname'),
+		        //     dsPrefix: 'your-ds'
+	            // };
+	            // parent.postMessage({ pluginMessage: { type: 'variables', data } }, '*');
+	            parent.postMessage({ pluginMessage: { type: 'explore' } }, '*');
+            }
+
+			explore()
+
+            document.getElementById('generate').onclick = () => {
+	            parent.postMessage({ pluginMessage: { type: 'expand', sections: ['controls', 'outputs'] } }, '*');
+				document.getElementById('outputs').classList.remove('display-none');
+            }
+
+			function checkAndPatchCollectionName(name, checboxId, inputId) {
+				document.getElementById(inputId).value = !!name ? name : '';
+				document.getElementById(checboxId).checked = !!name;
+				document.getElementById(inputId).disabled = !name;
+				document.getElementById(checboxId).disabled = !name;
+            }
+
+			onmessage = (message) => {
+				const names = message.data.pluginMessage;
+				console.log('From message', message.data.pluginMessage);;
+				checkAndPatchCollectionName(names[0], 'primitivecheck', 'primitivename');
+				checkAndPatchCollectionName(names[1], 'semanticcheck', 'semanticname');
+            }
+
+
+        </script>
+    </body>
+</html>
